@@ -3,8 +3,9 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        int ans = Day1.day1();
-        System.out.println(ans);
+        int ans1 = Day1.firstPuzzle();
+        int ans2 = Day1.secondPuzzle();
+        System.out.println(ans2);
 
     }
 }
