@@ -11,7 +11,7 @@ import static java.lang.Character.isDigit;
 public class Day1 {
     public static int firstPuzzle() {
         int total = 0;
-        List<String> fileData = readFile("/Users/sakchhamsangroula/Projects/aoc/aoc2023/src/puzzle1.txt");
+        List<String> fileData = Utils.readFile("/Users/sakchhamsangroula/Projects/aoc/aoc2023/src/puzzle1.txt");
         for (String data : fileData) {
             String nums = data.replaceAll("\\D+", "");
             int num = 0;
@@ -30,8 +30,8 @@ public class Day1 {
 
 
         int total = 0;
-        List<String> fileData = readFile("/Users/sakchhamsangroula/Projects/aoc/aoc2023/src/puzzle1.txt");
-        List <String> alphaDigits = new ArrayList<String>(){{
+        List<String> fileData = Utils.readFile("/Users/sakchhamsangroula/Projects/aoc/aoc2023/src/puzzle1.txt");
+        List<String> alphaDigits = new ArrayList<String>() {{
             add("one");
             add("two");
             add("three");
@@ -49,41 +49,22 @@ public class Day1 {
                 if (isDigit(character)) {
                     digits.add(String.valueOf(character));
                 }
-                for(String digit: alphaDigits){
+                for (String digit : alphaDigits) {
                     String remainList = data.substring(index);
-                    if(remainList.startsWith(digit)){
-                        digits.add(String.valueOf(alphaDigits.indexOf(digit)+1));
+                    if (remainList.startsWith(digit)) {
+                        digits.add(String.valueOf(alphaDigits.indexOf(digit) + 1));
                     }
                 }
                 index++;
             }
             int num = 0;
-            if (digits.size() > 1){
-                num = Integer.parseInt(digits.get(0)) * 10 + Integer.parseInt(digits.get(digits.size()-1));
+            if (digits.size() > 1) {
+                num = Integer.parseInt(digits.get(0)) * 10 + Integer.parseInt(digits.get(digits.size() - 1));
+            } else {
+                num = Integer.parseInt(digits.get(0)) * 10 + Integer.parseInt(digits.get(0));
             }
-            else{
-                 num = Integer.parseInt(digits.get(0)) * 10 + Integer.parseInt(digits.get(0));
-            }
-            total+= num;
+            total += num;
         }
         return total;
     }
-
-    private static List<String> readFile(String fileName) {
-        List<String> fileValue = new ArrayList<String>();
-        try {
-            File myObj = new File(fileName);
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                fileValue.add(data);
-            }
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("No file found");
-        }
-        return fileValue;
-    }
-
-
 }
